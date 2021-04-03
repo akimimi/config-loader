@@ -8,16 +8,16 @@ import (
 
 type GetuiConfigGroup map[string]getuigo.GetuiConfig
 
-func (this *GetuiConfigGroup) LoadByFile(filename string) {
+func (g *GetuiConfigGroup) LoadByFile(filename string) {
 	if file, e := ioutil.ReadFile(filename); e != nil {
 		panic(e)
 	} else {
-		this.LoadByBytes(file)
+		g.LoadByBytes(file)
 	}
 }
 
-func (this *GetuiConfigGroup) LoadByBytes(content []byte) {
-	if e := yaml.Unmarshal(content, this); e != nil {
+func (g *GetuiConfigGroup) LoadByBytes(content []byte) {
+	if e := yaml.Unmarshal(content, g); e != nil {
 		panic(e)
 	}
 }

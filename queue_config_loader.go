@@ -1,4 +1,4 @@
-package msqueue_config_loader
+package config_loader
 
 import (
 	"github.com/go-yaml/yaml"
@@ -26,4 +26,3 @@ func (c *QueueConfig) LoadByBytes(content []byte) {
 		panic(e)
 	}
 }
-

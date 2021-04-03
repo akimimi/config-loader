@@ -1,4 +1,4 @@
-package msqueue_config_loader
+package config_loader
 
 import "testing"
 
@@ -17,4 +17,3 @@ func TestAliqueueConfig(t *testing.T) {
 		t.Fail()
 	}
 }
-

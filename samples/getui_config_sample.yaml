@@ -1,0 +1,14 @@
+shopend:
+  appid:
+  appsecret:
+  appkey:
+  mastersecret:
+  intent_template: "intent:#Intent;component=com.mimi.xichelapp/.activity3.MimiSaasActivity;S.message=%s;end"
+
+staffend:
+  appid:
+  appsecret:
+  appkey:
+  mastersecret:
+  intent_template: "intent:#Intent;component=com.mimi.xichelapp/.activity3.MimiSaasActivity;S.message=%s;end"
+

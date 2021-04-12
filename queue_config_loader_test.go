@@ -12,7 +12,7 @@ func TestAliqueueConfig(t *testing.T) {
     `
 
 	config.LoadByBytes([]byte(yamlstr))
-	if config.QueueName != "gotest" {
+	if config.QueueName != "gotest" || config.Verbose {
 		t.Log("Aliqueue config YAML unmarshal failed!")
 		t.Fail()
 	}

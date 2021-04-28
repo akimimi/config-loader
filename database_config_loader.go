@@ -2,7 +2,6 @@ package config_loader
 
 import (
 	"fmt"
-	"github.com/go-yaml/yaml"
 	"io/ioutil"
 )
 
@@ -33,9 +32,7 @@ func (dsg *DatasourceConfigGroup) LoadByFile(filename string) {
 }
 
 func (dsg *DatasourceConfigGroup) LoadByBytes(content []byte) {
-	if e := yaml.Unmarshal(content, dsg); e != nil {
-		panic(e)
-	}
+	LoadByBytes(content, dsg)
 	for name, c := range *dsg {
 		if c.Port == 0 {
 			c.Port = dsg.defaultDatasourcePort(c.Dbtype)

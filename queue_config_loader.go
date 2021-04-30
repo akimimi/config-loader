@@ -6,6 +6,7 @@ const DefaultMaxMessageSize = 65536
 const DefaultMessageRetentionPeriod = 7 * 24 * 3600 // 7days
 const DefaultVisibilityTimeout = 60
 const DefaultPollingWaitSeconds = 10
+const DefaultConsumeTime = -1
 
 type QueueConfig struct {
 	Url                    string `json:"url" yaml:"url"`
@@ -19,6 +20,7 @@ type QueueConfig struct {
 	VisibilityTimeout      int    `json:"visibility_timeout" yaml:"visibility_timeout"`
 	PollingWaitSeconds     int    `json:"polling_wait_seconds" yaml:"polling_wait_seconds"`
 	Verbose                bool   `json:"verbose" yaml:"verbose"`
+	ConsumeTimeout         int    `json:"consume_timeout" yaml:"consume_timeout"`
 }
 
 func (c *QueueConfig) LoadByFile(filename string) {
@@ -49,5 +51,8 @@ func (c *QueueConfig) setDefault() {
 	}
 	if c.PollingWaitSeconds == 0 {
 		c.PollingWaitSeconds = DefaultPollingWaitSeconds
+	}
+	if c.ConsumeTimeout == 0 {
+		c.ConsumeTimeout = DefaultConsumeTime
 	}
 }

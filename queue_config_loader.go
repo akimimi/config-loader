@@ -7,6 +7,8 @@ const DefaultMessageRetentionPeriod = 7 * 24 * 3600 // 7days
 const DefaultVisibilityTimeout = 60
 const DefaultPollingWaitSeconds = 10
 const DefaultConsumeTime = -1
+const DefaultMaxProcessingMessage = 200
+const DefaultOverloadBreakSeconds = 10
 
 type QueueConfig struct {
 	Url                    string `json:"url" yaml:"url"`
@@ -21,6 +23,8 @@ type QueueConfig struct {
 	PollingWaitSeconds     int    `json:"polling_wait_seconds" yaml:"polling_wait_seconds"`
 	Verbose                bool   `json:"verbose" yaml:"verbose"`
 	ConsumeTimeout         int    `json:"consume_timeout" yaml:"consume_timeout"`
+	MaxProcessingMessage   int    `json:"max_processing_message" yaml:"max_processing_message"`
+	OverloadBreakSeconds   int    `json:"overload_break_seconds" yaml:"overload_break_seconds"`
 }
 
 func (c *QueueConfig) LoadByFile(filename string) {
@@ -54,5 +58,11 @@ func (c *QueueConfig) setDefault() {
 	}
 	if c.ConsumeTimeout == 0 {
 		c.ConsumeTimeout = DefaultConsumeTime
+	}
+	if c.MaxProcessingMessage == 0 {
+		c.MaxProcessingMessage = DefaultMaxProcessingMessage
+	}
+	if c.OverloadBreakSeconds == 0 {
+		c.OverloadBreakSeconds = DefaultOverloadBreakSeconds
 	}
 }

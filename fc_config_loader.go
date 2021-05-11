@@ -14,6 +14,9 @@ func (c *FcServiceConfig) LoadByBytes(content []byte) {
 	LoadByBytes(content, c)
 }
 
+func (c *FcServiceConfig) SetDefault() {
+}
+
 type FunctionConfig struct {
 	ServiceName  string `json:"service_name" yaml:"service_name"`
 	FunctionName string `json:"function_name" yaml:"function_name"`
@@ -25,4 +28,7 @@ func (c *FunctionConfig) LoadByFile(filename string) {
 
 func (c *FunctionConfig) LoadByBytes(content []byte) {
 	LoadByBytes(content, c)
+}
+
+func (c *FunctionConfig) SetDefault() {
 }

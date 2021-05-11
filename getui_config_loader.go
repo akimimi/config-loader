@@ -13,3 +13,6 @@ func (g *GetuiConfigGroup) LoadByFile(filename string) {
 func (g *GetuiConfigGroup) LoadByBytes(content []byte) {
 	LoadByBytes(content, g)
 }
+
+func (g *GetuiConfigGroup) SetDefault() {
+}

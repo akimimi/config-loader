@@ -2,7 +2,6 @@ package config_loader
 
 import (
 	"fmt"
-	"io/ioutil"
 )
 
 const DataTypeMongo = "mongo"
@@ -24,15 +23,16 @@ type DatasourceConfig struct {
 type DatasourceConfigGroup map[string]DatasourceConfig
 
 func (dsg *DatasourceConfigGroup) LoadByFile(filename string) {
-	if file, e := ioutil.ReadFile(filename); e != nil {
-		panic(e)
-	} else {
-		dsg.LoadByBytes(file)
-	}
+	LoadByFile(filename, dsg)
+	dsg.SetDefault()
 }
 
 func (dsg *DatasourceConfigGroup) LoadByBytes(content []byte) {
 	LoadByBytes(content, dsg)
+	dsg.SetDefault()
+}
+
+func (dsg *DatasourceConfigGroup) SetDefault() {
 	for name, c := range *dsg {
 		if c.Port == 0 {
 			c.Port = dsg.defaultDatasourcePort(c.Dbtype)

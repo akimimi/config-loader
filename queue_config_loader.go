@@ -8,7 +8,7 @@ const DefaultVisibilityTimeout = 60
 const DefaultPollingWaitSeconds = 10
 const DefaultConsumeTime = -1
 const DefaultMaxProcessingMessage = 200
-const DefaultOverloadBreakSeconds = 10
+const DefaultOverloadBreakSeconds = 120
 
 type QueueConfig struct {
 	Url                    string `json:"url" yaml:"url"`
@@ -29,15 +29,15 @@ type QueueConfig struct {
 
 func (c *QueueConfig) LoadByFile(filename string) {
 	LoadByFile(filename, c)
-	c.setDefault()
+	c.SetDefault()
 }
 
 func (c *QueueConfig) LoadByBytes(content []byte) {
 	LoadByBytes(content, c)
-	c.setDefault()
+	c.SetDefault()
 }
 
-func (c *QueueConfig) setDefault() {
+func (c *QueueConfig) SetDefault() {
 	if c.DelaySeconds == 0 {
 		c.DelaySeconds = DefaultDelaySeconds
 	}

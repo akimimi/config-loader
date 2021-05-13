@@ -25,6 +25,7 @@ type QueueConfig struct {
 	ConsumeTimeout         int    `json:"consume_timeout" yaml:"consume_timeout"`
 	MaxProcessingMessage   int    `json:"max_processing_message" yaml:"max_processing_message"`
 	OverloadBreakSeconds   int    `json:"overload_break_seconds" yaml:"overload_break_seconds"`
+	MessageReceivePerLoop  int    `json:"message_receive_per_loop" yaml:"message_receive_per_loop"`
 }
 
 func (c *QueueConfig) LoadByFile(filename string) {

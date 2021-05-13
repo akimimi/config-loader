@@ -62,3 +62,23 @@ func TestDatasourceConfigGroup_LoadByBytesForReplicaSet(t *testing.T) {
 		t.Errorf("connect database expected %s, actual %s", "dev", c.Database)
 	}
 }
+
+func BenchmarkDatasourceConfigGroup_LoadByBytes(b *testing.B) {
+	yamlstr := `
+    test:
+        dbtype: mongo
+        server: dev.mimixiche.cc
+        port: 27017
+        username: "akimimi"
+        password: "123456"
+        query: connectTimeoutMS=10000
+        database: dev
+    `
+
+	b.ReportAllocs()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		config := DatasourceConfigGroup{}
+		config.LoadByBytes([]byte(yamlstr))
+	}
+}

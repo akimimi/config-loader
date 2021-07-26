@@ -1,7 +1,7 @@
 package config_loader
 
 import (
-	"gitee.com/akimimi/getuigo"
+	"github.com/akimimi/getuigo"
 )
 
 type GetuiConfigGroup map[string]getuigo.GetuiConfig

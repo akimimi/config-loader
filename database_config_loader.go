@@ -17,6 +17,7 @@ type DatasourceConfig struct {
 	ReplicaSet     string `json:"replica_set" yaml:"replica_set,omitempty"`
 	ReplicaServers string `json:"replica_servers" yaml:"replica_servers,omitempty"`
 	ReadPreference string `json:"replica_read_preference" yaml:"replica_read_preference,omitempty"`
+	Prefix         string `json:"prefix" yaml:"prefix"`
 	ConfigLoader
 }
 

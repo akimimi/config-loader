@@ -13,6 +13,7 @@ func TestDatasourceConfigGroup_LoadByBytes(t *testing.T) {
         password: "123456"
         query: connectTimeoutMS=10000
         database: dev
+        prefix: test
     `
 
 	config.LoadByBytes([]byte(yamlstr))
@@ -20,6 +21,9 @@ func TestDatasourceConfigGroup_LoadByBytes(t *testing.T) {
 	c, ok := config["test"]
 	if !ok || c.Server != "dev.mimixiche.cc" {
 		t.Error("datasource config YAML unmarshal failed!")
+	}
+	if c.Prefix != "test" {
+		t.Errorf("datasource prefix expected to be %s, actual %s", "test", c.Prefix)
 	}
 	expected := "mongodb://akimimi:123456@dev.mimixiche.cc:27017/?connectTimeoutMS=10000"
 	actual := config.ConnectString("test")

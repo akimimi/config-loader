@@ -108,7 +108,7 @@ func TestDatasourceConfig_String(t *testing.T) {
 	}
 
 	config.Dbtype = DataTypeMysql
-	expected = "akimimi:123456@dev.db.cc:27017/dev?connectTimeoutMS=10000"
+	expected = "akimimi:123456@tcp(dev.db.cc:27017)/dev?connectTimeoutMS=10000"
 	actual = config.String()
 	if actual != expected {
 		t.Errorf("connect string expected %s, actual %s", expected, actual)

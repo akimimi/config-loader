@@ -84,9 +84,9 @@ func (dsc *DatasourceConfig) String() string {
 		}
 	} else {
 		if dsc.Username != "" && dsc.Password != "" {
-			s = fmt.Sprintf("%s:%s@%s:%d", dsc.Username, dsc.Password, dsc.Server, dsc.Port)
+			s = fmt.Sprintf("%s:%s@%s", dsc.Username, dsc.Password, dsc.Host())
 		} else {
-			s = fmt.Sprintf("%s:%d", dsc.Server, dsc.Port)
+			s = dsc.Host()
 		}
 		s += "/"
 		if dsc.Dbtype != DataTypeMongo && dsc.Database != "" {
@@ -109,5 +109,13 @@ func (dsc *DatasourceConfig) Protocol() string {
 		return "mongodb"
 	default:
 		return ""
+	}
+}
+
+func (dsc *DatasourceConfig) Host() string {
+	if dsc.Dbtype == DataTypeMysql {
+		return fmt.Sprintf("tcp(%s:%d)", dsc.Server, dsc.Port)
+	} else {
+		return fmt.Sprintf("%s:%d", dsc.Server, dsc.Port)
 	}
 }

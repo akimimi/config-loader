@@ -88,24 +88,25 @@ func (dsc *DatasourceConfig) String() string {
 		} else {
 			s = fmt.Sprintf("%s:%d", dsc.Server, dsc.Port)
 		}
-		if dsc.Protocol() == "mysql" && dsc.Database != "" {
-			s += "/" + dsc.Database
-		} else {
-			s += "/"
+		s += "/"
+		if dsc.Dbtype != DataTypeMongo && dsc.Database != "" {
+			s += dsc.Database
 		}
 		if dsc.Query != "" {
 			s += "?" + dsc.Query
 		}
 	}
-	return dsc.Protocol() + "://" + s
+	if dsc.Protocol() != "" {
+		return dsc.Protocol() + "://" + s
+	} else {
+		return s
+	}
 }
 
 func (dsc *DatasourceConfig) Protocol() string {
 	switch dsc.Dbtype {
 	case DataTypeMongo:
 		return "mongodb"
-	case DataTypeMysql:
-		return "mysql"
 	default:
 		return ""
 	}
